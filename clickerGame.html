@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clicker Game</title>
+    <link rel="stylesheet" href="clickerGame.css">
+</head>
+<body>
+    <h1>Welcome To the Clicker Game</h1>
+    <h2>And</h2>
+    <h3>Catch me if you can! </h3>
+    <button id="startButton">Start</button>
+    <input id="countdown" value="30">
+    
+    <h5>Player1</h5>
+
+    <marquee behavior="alternate">
+        <button id="catchMeButton">Click me...</button>
+    </marquee>
+
+    <br><br>
+    <p id="finalResult">Final Result: 0</p>
+    
+    <script>
+        document.getElementById('startButton').onclick = () => {
+            const inp = document.getElementById('countdown');
+            let n = 30;
+            inp.value = n;
+            const handle = setInterval(function() {
+                n--;
+                inp.value = n;
+                if (n <= 0) clearInterval(handle);
+            }, 1000);
+        };
+    </script>
+    
+    <script>
+        let catchMeButton = document.getElementById('catchMeButton');
+        let finalResult = document.getElementById('finalResult');
+        let counter = 0;
+       
+        catchMeButton.addEventListener('click', () => {
+            const countdownValue = Number(document.getElementById('countdown').value);
+            if (countdownValue > 0 && countdownValue <= 60) {
+                counter += 1;
+                finalResult.textContent = 'Final Result: ' + counter;
+            }
+        });
+    </script>
+</body>
+</html>
